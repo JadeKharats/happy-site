@@ -1,0 +1,12 @@
+# Build output
+/public/
+
+# Vendored tutorials (derived from the app repos — see scripts/vendor.sh)
+/content/tutorials/*.md
+!/content/tutorials/_index.md
+/templates/partials/tutorial-nav.html
+
+.DS_Store
+
+# Local Claude settings
+/.claude/

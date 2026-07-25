@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1" # weekly: catch upstream (Hwaro, base images) breakage
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Build through the Dockerfile — the exact path the release uses. This
+      # exercises vendoring (raw-GitHub fetch of each TUTORIAL.md) and the Hwaro
+      # build, so a broken tutorial link or template fails the check.
+      - name: Build site image
+        run: docker build -t happy-site:ci .

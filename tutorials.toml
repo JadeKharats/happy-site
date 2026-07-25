@@ -1,0 +1,35 @@
+# Tutorial manifest — the single source of truth for the site's presentation.
+#
+# Prose lives in each app repo's TUTORIAL.md (canonical). This file owns how the
+# site *presents* each tutorial: title, order, and the links every page must show
+# (repo, live demo, GHCR image). `scripts/vendor.sh` reads this file to fetch the
+# prose, wrap it with front matter + above-the-fold + footer, and generate the
+# sidebar nav.
+#
+# Add a tutorial = add a block here. Nothing else to touch.
+
+[[tutorial]]
+slug   = "motivators"
+title  = "Moving Motivators with Crystal and Kemal"
+weight = 1
+repo   = "https://github.com/jadekharats/motivators"
+demo   = "https://motivators.yoteau.fr"
+ghcr   = "ghcr.io/jadekharats/motivators"
+
+# Coming next — uncomment once their TUTORIAL.md exists:
+#
+# [[tutorial]]
+# slug   = "kudos"
+# title  = "Kudos with Lucky — auth, uploads, history"
+# weight = 2
+# repo   = "https://github.com/jadekharats/kudos"
+# demo   = "https://kudos.yoteau.fr"
+# ghcr   = "ghcr.io/jadekharats/kudos"
+#
+# [[tutorial]]
+# slug   = "api"
+# title  = "Niko-niko API with Spider-Gazelle — OpenAPI + Backstage"
+# weight = 3
+# repo   = "https://github.com/jadekharats/api"
+# demo   = "https://api.yoteau.fr"
+# ghcr   = "ghcr.io/jadekharats/api"

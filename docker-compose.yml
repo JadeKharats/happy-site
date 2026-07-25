@@ -1,0 +1,19 @@
+# Reference deployment for the Hetzner VPS (see ../CLAUDE.md).
+# Lives at /opt/stack/happy/ on the server. Traefik discovers it by label on the
+# shared external `web` network; no ports are published.
+services:
+  happy-site:
+    image: ghcr.io/jadekharats/happy-site:latest
+    restart: unless-stopped
+    networks:
+      - web
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.happy.rule=Host(`happy.yoteau.fr`)
+      - traefik.http.routers.happy.entrypoints=websecure
+      - traefik.http.routers.happy.tls.certresolver=le
+      - traefik.http.services.happy.loadbalancer.server.port=3000
+
+networks:
+  web:
+    external: true

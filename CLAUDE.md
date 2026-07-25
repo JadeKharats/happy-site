@@ -44,10 +44,15 @@ Rejected:
   SSGs cost more than an evening of debugging.
 
 Notes for building:
-- Templates are Crinja (Jinja2-like); front matter is TOML.
+- Templates are Crinja (Jinja2-like); front matter is TOML (`+++ … +++`).
 - Config is TOML with per-env variants (`config.production.toml`).
-- Deploy via the GitHub Action to GitHub Pages (see Hwaro's deployment docs);
-  Docker is also documented if we ever host it on the Hetzner VPS instead.
+- Content is vendored from each app's `TUTORIAL.md` by `scripts/vendor.sh`
+  (Option A): sibling checkout locally, raw GitHub in the Docker build.
+- Deploy: Docker image on the Hetzner VPS behind Traefik (`happy.yoteau.fr`),
+  not GitHub Pages. Tag `v*` → `release.yml` builds via the official
+  `ghcr.io/hahwul/hwaro` image (multi-arch, pinned) and pushes
+  `ghcr.io/jadekharats/happy-site`. **Gotcha:** the 0.13.0 `.apk` is arm64-only,
+  so build from the official image, never that apk.
 
 ## Content rules
 
